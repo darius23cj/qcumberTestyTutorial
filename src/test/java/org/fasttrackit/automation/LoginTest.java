@@ -56,44 +56,6 @@ public class LoginTest extends TestBase {
 
     }
 
-    @Test
-    public void changePasswordWithInvalidCurrentPassword() {
-        openBrowser();
-
-        loginPage.login("eu@fast.com", "eu.pass");
-
-        WebElement preferencesBtn = driver.findElement(By.xpath("//button[@data-target='#preferences-win']"));
-        preferencesBtn.click();
-
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
 
-        changePasswordFields("eu.pass", "new.pass", "new.pass");
-
-    }
-
-    private void changePasswordFields(String currentPassword, String newPassword, String confirmPassword) {
-
-        WebElement currentPasswordField = driver.findElement(By.name("password"));
-        WebElement newPasswordField = driver.findElement(By.name("newPassword"));
-        WebElement repeatPasswordField = driver.findElement(By.name("newPasswordRepeat"));
-
-
-        currentPasswordField.sendKeys(currentPassword);
-        newPasswordField.sendKeys(newPassword);
-        repeatPasswordField.sendKeys(confirmPassword);
-    }
-
-    private void openBrowser() {
-        System.out.println("Ready");
-        driver.get("https://rawgit.com/sdl/Testy/master/src/test/functional/app-demo/login.html");
-        //ca sa folosim multiple url uri
-        //driver.get("https://rawgit.com/sdl/Testy/master/src/test/functional/app-demo/login.html");
-
-
-    }
 }
