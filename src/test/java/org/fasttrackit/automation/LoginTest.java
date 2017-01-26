@@ -5,6 +5,7 @@ import org.fasttrackit.util.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.internal.Utils;
@@ -15,12 +16,17 @@ import static org.hamcrest.core.Is.is;
 
 public class LoginTest extends TestBase {
 
-    @Test
+    private LoginPage loginPage;
 
+    public LoginTest() {
+        loginPage = PageFactory.initElements(driver, LoginPage.class);
+    }
+
+    @Test
     public void validLoginTest() {
         openBrowser();
 
-        Login("eu@fast.com", "eu.pass");
+        loginPage.login("eu@fast.com", "eu.pass");
 
         try {
             // driver.findElement(By.id("loginButton")).click()
@@ -39,7 +45,7 @@ public class LoginTest extends TestBase {
     public void invalidPasswordTest() {
         openBrowser();
 
-        Login("eu@fast.com", "eu.pass1");
+        loginPage.login("eu@fast.com", "eu.pass1");
 
 
         WebElement errorElement = driver.findElement(By.className("error-msg"));
@@ -53,7 +59,8 @@ public class LoginTest extends TestBase {
     @Test
     public void changePasswordWithInvalidCurrentPassword() {
         openBrowser();
-        Login("eu@fast.com", "eu.pass");
+
+        loginPage.login("eu@fast.com", "eu.pass");
 
         WebElement preferencesBtn = driver.findElement(By.xpath("//button[@data-target='#preferences-win']"));
         preferencesBtn.click();
@@ -65,11 +72,11 @@ public class LoginTest extends TestBase {
         }
 
 
-        changePasswordFields("eu.pass","new.pass","new.pass");
+        changePasswordFields("eu.pass", "new.pass", "new.pass");
 
     }
 
-    private void changePasswordFields(String currentPassword,String newPassword, String confirmPassword) {
+    private void changePasswordFields(String currentPassword, String newPassword, String confirmPassword) {
 
         WebElement currentPasswordField = driver.findElement(By.name("password"));
         WebElement newPasswordField = driver.findElement(By.name("newPassword"));
@@ -86,22 +93,7 @@ public class LoginTest extends TestBase {
         driver.get("https://rawgit.com/sdl/Testy/master/src/test/functional/app-demo/login.html");
         //ca sa folosim multiple url uri
         //driver.get("https://rawgit.com/sdl/Testy/master/src/test/functional/app-demo/login.html");
-    }
 
-    public void Login(String user, String pass) {
-        WebElement emailField = driver.findElement(By.cssSelector("#email"));
-        WebElement passField = driver.findElement(By.name("password"));
-        WebElement loginBtn = driver.findElement(By.className("login-btn"));
-
-        // System.out.println("Enter email");
-        emailField.sendKeys(user);
-        //System.out.println("Enter password");
-        passField.sendKeys(pass);
-        //System.out.println("Click on login");
-        loginBtn.click();
 
     }
-
-
-
 }
