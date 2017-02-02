@@ -16,17 +16,18 @@ import static org.hamcrest.core.Is.is;
 
 public class LoginTest extends TestBase {
 
-    private LoginPage loginPage;
+    //private LoginPage page;
+    private LoginView page = new LoginView();
 
-    public LoginTest() {
-        loginPage = PageFactory.initElements(driver, LoginPage.class);
-    }
+   // public LoginTest() {
+        //page = PageFactory.initElements(driver, LoginPage.class);
+  //  }
 
     @Test
     public void validLoginTest() {
         openBrowser();
 
-        loginPage.login("eu@fast.com", "eu.pass");
+        page.login("eu@fast.com", "eu.pass");
 
         try {
             // driver.findElement(By.id("loginButton")).click()
@@ -45,7 +46,7 @@ public class LoginTest extends TestBase {
     public void invalidPasswordTest() {
         openBrowser();
 
-        loginPage.login("eu@fast.com", "eu.pass1");
+        page.login("eu@fast.com", "eu.pass1");
 
 
         WebElement errorElement = driver.findElement(By.className("error-msg"));
