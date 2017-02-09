@@ -23,7 +23,7 @@ public abstract class TestBase {
             LOGGER.error("Exception when start suite", e);
         }
     }
-    protected void openBrowser() {
+    protected void openLoginPage() {
         System.out.println("Ready");
         driver.get("https://rawgit.com/sdl/Testy/master/src/test/functional/app-demo/login.html");
         //ca sa folosim multiple url uri

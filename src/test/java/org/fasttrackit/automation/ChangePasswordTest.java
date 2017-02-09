@@ -5,9 +5,7 @@ import org.fasttrackit.util.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.testng.internal.Utils;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
@@ -52,7 +50,7 @@ public class ChangePasswordTest extends TestBase {
     }
 
     private void openPage() {
-        openBrowser();
+        openLoginPage();
 
         loginPage.login("eu@fast.com", "eu.pass");
 

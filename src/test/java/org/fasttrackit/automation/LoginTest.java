@@ -5,10 +5,8 @@ import org.fasttrackit.util.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.testng.internal.Utils;
 
 import static java.lang.Thread.sleep;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -21,11 +19,11 @@ public class LoginTest extends TestBase {
 
    // public LoginTest() {
         //page = PageFactory.initElements(driver, LoginPage.class);
-  //  }
+  //}
 
     @Test
     public void validLoginTest() {
-        openBrowser();
+        openLoginPage();
 
         page.login("eu@fast.com", "eu.pass");
 
@@ -42,9 +40,12 @@ public class LoginTest extends TestBase {
     }
 
 
+
+
+
     @Test
     public void invalidPasswordTest() {
-        openBrowser();
+        openLoginPage();
 
         page.login("eu@fast.com", "eu.pass1");
 
