@@ -14,8 +14,9 @@ public class ElementsView {
     public CheckBox stopProcessCheckBox = new CheckBox(stopProcessLabel);
     public CheckBox labelWithEnterCheckBox = new CheckBox(labelWithEnterLabel);
 
-    public WebLocator dropDown = new WebLocator().setClasses("pull-left");
-    public WebLocator dropDownOption = new WebLocator().setElPath("/html/body/form[1]/div[2]/div/div/ul/li[2]/a/span");
+    public WebLocator autoOption = new WebLocator().setText("Auto").setClasses("filter-option");
+    public WebLocator menuDropDown = new WebLocator().setClasses("dropdown-menu");
+    public WebLocator manualOption = new WebLocator().setContainer(menuDropDown).setText("Manual");
 
     public static void main(String[] args) {
         ElementsView test = new ElementsView();
@@ -23,5 +24,6 @@ public class ElementsView {
         System.out.println(test.labelWithEnterLabel.getSelector());
         System.out.println(test.stopProcessCheckBox.getSelector());
         System.out.println(test.labelWithEnterCheckBox.getSelector());
+        System.out.println(test.autoOption.getSelector());
     }
 }
