@@ -43,5 +43,14 @@ public class TabelsTest extends TestBase {
 
         checkBox.click();
 
+        WebLocator tableLocator = new WebLocator().setTag("table");
+        WebLocator firstNameLocator = new WebLocator().setText("Bob");
+        WebLocator lastNameLocator = new WebLocator().setText("Smith");
+        WebLocator rowLocator = new WebLocator(tableLocator).setTag("tr").setChildNodes(firstNameLocator,lastNameLocator);
+        WebLocator checkboxLocator=new WebLocator().setContainer(rowLocator).setTag("input");
+        checkboxLocator.click();
+
+
+
     }
 }
