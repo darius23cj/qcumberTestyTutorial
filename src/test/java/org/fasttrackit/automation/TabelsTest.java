@@ -34,18 +34,17 @@ public class TabelsTest extends TestBase {
     }
 
     @Test
-    public void selectRowByEmailSetup(){
+    public void selectRowByEmailSetup() {
         openLoginPage();
         loginView.login("eu@fast.com", "eu.pass");
 
     }
 
-    @Test (dependsOnMethods = "selectRowByEmailSetup",dataProvider = "emailsProvider")
-    public void selectRowByName(String email) {
+    @Test(dependsOnMethods = "selectRowByEmailSetup", dataProvider = "emailsProvider")
+    public void selectRowByName(String firstName,String email) {
 
 
-
-        Row row = table.getRow(new Cell(4, email));
+        Row row = table.getRow(new Cell(2, firstName),new Cell(4, email));
 
         CheckBox checkBox = new CheckBox(row);
 
@@ -59,13 +58,13 @@ public class TabelsTest extends TestBase {
 //        checkboxLocator.click();
 
 
-
     }
-@DataProvider
-    public static Object[][] emailsProvider(){
-        return new  Object[][]{
-                {"nickwhite@mail.com"},
-                {"davidmiller@mail.com"}
+
+    @DataProvider
+    public static Object[][] emailsProvider() {
+        return new Object[][]{
+                {"Nick","nickwhite@mail.com"},
+                {"David","davidmiller@mail.com"}
         };
     }
 }
