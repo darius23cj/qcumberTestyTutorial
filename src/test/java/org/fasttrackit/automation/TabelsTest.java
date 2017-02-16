@@ -9,11 +9,13 @@ import com.sdl.selenium.web.table.Table;
 import org.fasttrackit.util.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class TabelsTest extends TestBase {
 
     private ElementsView page = new ElementsView();
+    Table table = new Table();
 
 
     @Test
@@ -32,25 +34,38 @@ public class TabelsTest extends TestBase {
     }
 
     @Test
-    public void selectRowByName() {
+    public void selectRowByEmailSetup(){
         openLoginPage();
         loginView.login("eu@fast.com", "eu.pass");
-        Table table = new Table();
 
-        Row row = table.getRow(new Cell(4, "davidmiller@mail.com"));
+    }
+
+    @Test (dependsOnMethods = "selectRowByEmailSetup",dataProvider = "emailsProvider")
+    public void selectRowByName(String email) {
+
+
+
+        Row row = table.getRow(new Cell(4, email));
 
         CheckBox checkBox = new CheckBox(row);
 
         checkBox.click();
 
-        WebLocator tableLocator = new WebLocator().setTag("table");
-        WebLocator firstNameLocator = new WebLocator().setText("Bob");
-        WebLocator lastNameLocator = new WebLocator().setText("Smith");
-        WebLocator rowLocator = new WebLocator(tableLocator).setTag("tr").setChildNodes(firstNameLocator,lastNameLocator);
-        WebLocator checkboxLocator=new WebLocator().setContainer(rowLocator).setTag("input");
-        checkboxLocator.click();
+//        WebLocator tableLocator = new WebLocator().setTag("table");
+//        WebLocator firstNameLocator = new WebLocator().setText("Bob");
+//        WebLocator lastNameLocator = new WebLocator().setText("Smith");
+//        WebLocator rowLocator = new WebLocator(tableLocator).setTag("tr").setChildNodes(firstNameLocator,lastNameLocator);
+//        WebLocator checkboxLocator=new WebLocator().setContainer(rowLocator).setTag("input");
+//        checkboxLocator.click();
 
 
 
+    }
+@DataProvider
+    public static Object[][] emailsProvider(){
+        return new  Object[][]{
+                {"nickwhite@mail.com"},
+                {"davidmiller@mail.com"}
+        };
     }
 }
