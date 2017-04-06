@@ -1,10 +1,14 @@
 package org.fasttrackit.automation;
 
+import com.sdl.selenium.bootstrap.button.Upload;
+import com.sdl.selenium.bootstrap.button.UploadFile;
 import com.sdl.selenium.bootstrap.form.DatePicker;
+import com.sdl.selenium.bootstrap.form.Form;
 import com.sdl.selenium.bootstrap.form.MultiSelect;
 import com.sdl.selenium.web.SearchType;
 import com.sdl.selenium.web.WebLocator;
 import com.sdl.selenium.web.form.CheckBox;
+import com.sdl.selenium.web.utils.PropertiesReader;
 import com.sdl.selenium.web.utils.Utils;
 import org.fasttrackit.util.TestBase;
 import org.openqa.selenium.By;
@@ -77,6 +81,18 @@ public class ElementsTest extends TestBase {
             Utils.sleep(1000);
             datePiker.select("11/03/2016", "dd/MM/yyyy", Locale.ENGLISH);
         }
+    }
+
+    private Form form = new Form("Form Title");
+    private UploadFile uploadFile = new UploadFile(form);
+
+    @Test
+
+    public void uploadTest() {
+        openLoginPage();
+        loginView.login("eu@fast.com", "eu.pass");
+
+       uploadFile.upload(PropertiesReader.RESOURCES_DIRECTORY_PATH + "\\feature\\login\\login.feature");
     }
 
 
