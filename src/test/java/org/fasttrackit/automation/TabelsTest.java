@@ -62,6 +62,12 @@ public class TabelsTest extends TestBase {
 
     @DataProvider
     public static Object[][] emailsProvider() {
+//        Object [][] result=null;
+//
+//        //
+//
+//        return result;
+
         return new Object[][]{
                 {"Nick","nickwhite@mail.com"},
                 {"David","davidmiller@mail.com"}

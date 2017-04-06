@@ -17,6 +17,8 @@ public class ElementsView {
     public WebLocator manualOption = new WebLocator().setContainer(menuDropDown).setText("Manual");
 
 
+     public DropDown techDropDown= new DropDown();
+
 
     public static void main(String[] args) {
         ElementsView test = new ElementsView();

@@ -1,5 +1,7 @@
 package org.fasttrackit.automation;
 
+import com.sdl.selenium.bootstrap.form.DatePicker;
+import com.sdl.selenium.bootstrap.form.MultiSelect;
 import com.sdl.selenium.web.SearchType;
 import com.sdl.selenium.web.WebLocator;
 import com.sdl.selenium.web.form.CheckBox;
@@ -8,6 +10,8 @@ import org.fasttrackit.util.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
+
+import java.util.Locale;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
@@ -49,6 +53,30 @@ public class ElementsTest extends TestBase {
 
         page.autoOption.click();
         page.manualOption.click();
+    }
+
+    @Test
+
+    public void dropDownComponentTest() {
+        openLoginPage();
+        loginView.login("eu@fast.com", "eu.pass");
+
+        DropDown dropDown = new DropDown();
+        dropDown.select("Manual");
+
+        Utils.sleep(2000);
+        dropDown.select("Auto");
+
+        MultiSelect source = new MultiSelect().setClasses("multiselect");
+        {
+            source.select(" Tomatoes", " Mozzarella");
+
+            DatePicker datePiker = new DatePicker();
+
+            datePiker.setDate("9", "Apr", "2017");
+            Utils.sleep(1000);
+            datePiker.select("11/03/2016", "dd/MM/yyyy", Locale.ENGLISH);
+        }
     }
 
 
